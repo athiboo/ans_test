@@ -20,9 +20,12 @@ pipeline {
                 '''
             }
         }
-        stage('Dummy1') {
+        stage('ansible') {
             steps {
-                echo 'Hello World'
+                echo 'here'
+                sh '''
+                ansible-playbook aplaybooksapp2/playbook.yml -i aplaybooksapp2/inventory
+                '''
             }
         }
         stage('Dummy2') {
