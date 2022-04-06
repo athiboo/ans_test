@@ -6,25 +6,21 @@ terraform {
     }
   }
 }
-
 provider "docker" {}
-
 resource "docker_image" "targetserver" {
   name         = "nishanthkp/targetserver:ubuntu16"
-  keep_locally = false
+  keep_locally = true
 }
-
 resource "docker_container" "web_server" {
-  image = docker_image.targetserver.name
+  image = docker_image.targetserver.name # Calling Line 12
   name  = "web_server"
   ports {
     internal = 5000
     external = 5000
   }
 }
-
 resource "docker_container" "db_server" {
-  image = docker_image.targetserver.name
+  image = docker_image.targetserver.name # Caling line 12
   name  = "db_server"
   ports {
     internal = 3306
